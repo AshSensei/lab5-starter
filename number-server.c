@@ -11,8 +11,12 @@ void handle_404(int client_sock, char *path)  {
     char response_buff[BUFFER_SIZE];
     snprintf(response_buff, BUFFER_SIZE, "Error 404:\r\nUnrecognized path \"%s\"\r\n", path);
     // snprintf includes a null-terminator
-
+	
+    char message1[20] = "Error Message\r\n";
+    char message2[20] = "good luck\r\n";
     // TODO: send response back to client?
+    write(client_sock, message1, strlen(message1));
+    write(client_sock, message2, strlen(message2));
 }
 
 
@@ -38,3 +42,4 @@ int main(int argc, char *argv[]) {
 
     start_server(&handle_response, port);
 }
+
